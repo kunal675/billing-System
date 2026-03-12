@@ -1,0 +1,22 @@
+# Error handling
+php_flag display_errors on
+php_value error_reporting 7
+php_value log_errors on
+php_value error_log php_errors.log
+
+# Security headers
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+
+# Prevent directory listing
+Options -Indexes
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Protect config files
+<FilesMatch "^(config|db_connection)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
